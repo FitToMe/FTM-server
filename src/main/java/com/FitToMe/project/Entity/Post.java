@@ -15,7 +15,7 @@ public class Post extends Time {
     @GeneratedValue(strategy = GenerationType.IDENTITY) // PK의 생성 규칙: 자동 생성 전략 명시
     private Long id;
 
-    @OneToOne   // FK field
+    @ManyToOne(targetEntity=User.class, fetch=FetchType.LAZY)   // FK field
     @JoinColumn(name = "user_id", referencedColumnName = "id")
     private User user;
 
