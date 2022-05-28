@@ -1,4 +1,4 @@
-package com.FitToMe.project.Entity;
+package com.FitToMe.project.Entity.Post;
 
 import lombok.Getter;
 import org.springframework.data.annotation.*;
