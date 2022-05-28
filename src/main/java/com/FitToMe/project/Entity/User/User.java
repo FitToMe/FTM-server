@@ -1,4 +1,4 @@
-package com.FitToMe.project.Entity;
+package com.FitToMe.project.Entity.User;
 
 import lombok.*;
 import javax.persistence.*;
