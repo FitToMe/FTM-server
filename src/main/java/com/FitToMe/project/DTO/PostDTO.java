@@ -3,6 +3,8 @@ package com.FitToMe.project.DTO;
 import com.FitToMe.project.Entity.Post.PostEntity;
 import lombok.*;
 
+import java.time.LocalDateTime;
+
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
@@ -14,8 +16,8 @@ public class PostDTO {
     private String imageURL;
 
     //// Q. Date의 경우 자동업데이트되는데, DTO의 변수로 작성되어야하는게 맞을까요?
-//    private LocalDateTime regDate;
-//    private LocalDateTime modDate;
+    private LocalDateTime regDate;
+    private LocalDateTime modDate;
 
     // entity -> dto로 변환
     public PostDTO(PostEntity entity){
@@ -23,5 +25,7 @@ public class PostDTO {
         this.title=entity.getTitle();
         this.content=entity.getContent();
         this.imageURL=entity.getImageURL();
+        this.regDate=entity.getRegDate();
+        this.modDate=entity.getModDate();
     }
 }
