@@ -1,6 +1,6 @@
 package com.FitToMe.project.DTO;
 
-import com.FitToMe.project.Entity.Post.PostEntity;
+import com.FitToMe.project.Entity.Post;
 import lombok.*;
 
 import java.time.LocalDateTime;
@@ -20,7 +20,7 @@ public class PostDTO {
     private LocalDateTime modDate;
 
     // entity -> dto로 변환
-    public PostDTO(PostEntity entity){
+    public PostDTO(Post entity){
         this.id=entity.getId();
         this.title=entity.getTitle();
         this.content=entity.getContent();

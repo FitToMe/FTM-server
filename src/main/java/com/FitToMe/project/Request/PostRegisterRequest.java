@@ -1,6 +1,5 @@
 package com.FitToMe.project.Request;
 
-import com.FitToMe.project.Entity.Post.PostEntity;
 import lombok.Getter;
 
 import javax.validation.constraints.NotBlank;

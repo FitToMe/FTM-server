@@ -1,6 +1,5 @@
-package com.FitToMe.project.Entity.Post;
+package com.FitToMe.project.Entity;
 
-import com.FitToMe.project.Entity.User.User;
 import com.FitToMe.project.Request.PostRegisterRequest;
 import lombok.*;
 
@@ -14,7 +13,7 @@ import javax.persistence.*;
 @Builder            // 순서와 상관없이 만들뿐만 아니라 입력하지 않은 값은 자동으로 NULL을 넣어 생성할 수 있게 함
 @AllArgsConstructor // 생성된 모든 멤버변수를 인자로 받는 생성자 민듦
 @NoArgsConstructor  // 객체 생성 시 초기 인자 없이 객체 생성 가능
-public class PostEntity extends TimeEntity {
+public class Post extends TimeBase {
 
     @Id // PK field
     @GeneratedValue(strategy = GenerationType.IDENTITY) // PK의 생성 규칙: 자동 생성 전략 명시
@@ -29,7 +28,7 @@ public class PostEntity extends TimeEntity {
     private String content;
     private String imageURL;
 
-    public PostEntity(PostRegisterRequest postRegisterRequest) {
+    public Post(PostRegisterRequest postRegisterRequest) {
         this.title = postRegisterRequest.getTitle();
         this.content = postRegisterRequest.getContent();
         this.imageURL = postRegisterRequest.getImageURL();

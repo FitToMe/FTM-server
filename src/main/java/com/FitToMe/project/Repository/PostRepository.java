@@ -1,10 +1,10 @@
 package com.FitToMe.project.Repository;
 
-import com.FitToMe.project.Entity.Post.PostEntity;
+import com.FitToMe.project.Entity.Post;
 import org.springframework.data.jpa.repository.JpaRepository;
 import java.util.Optional;
 
-public interface PostRepository extends JpaRepository<PostEntity, Long> {
+public interface PostRepository extends JpaRepository<Post, Long> {
 
-    Optional<PostEntity> findByTitle(String postTitle);
+    Optional<Post> findByTitle(String postTitle);
 }
