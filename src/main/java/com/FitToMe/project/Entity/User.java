@@ -1,6 +1,7 @@
 package com.FitToMe.project.Entity;
 
 import lombok.*;
+
 import javax.persistence.*;
 
 @Entity
