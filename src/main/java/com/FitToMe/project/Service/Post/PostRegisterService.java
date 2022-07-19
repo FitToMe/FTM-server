@@ -19,7 +19,7 @@ public class PostRegisterService {
     public PostDTO createPost(PostRequest postRequest) throws IllegalArgumentException{
 
         String postTitle = postRequest.getTitle();
-        Optional<PostEntity> postEntity = postRepository.findAllTitle(postTitle);
+        Optional<PostEntity> postEntity = postRepository.findByTitle(postTitle);
 
         if(!postEntity.isPresent()){    // 존재하지 않은 경우 entity 생성
             return new PostDTO(postRepository.save(PostEntity.builder()

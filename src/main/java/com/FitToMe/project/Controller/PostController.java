@@ -19,10 +19,10 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor    //check
 public class PostController {
 
-    PostRegisterService postRegisterService;
-    PostModifyService postModifyService;
-    PostDeleteService postDeleteService;
-    PostStatusService postStatusService;
+    private final PostRegisterService postRegisterService;
+    private final PostModifyService postModifyService;
+    private final PostDeleteService postDeleteService;
+    private final PostStatusService postStatusService;
 
     // 전체 게시글 조회
     @GetMapping("/")
@@ -46,7 +46,7 @@ public class PostController {
 
     // 게시글 수정
     @PutMapping("/{post_id}")
-    public ApiResult<PostDTO> updatePost(@Valid @RequestBody PostRequest postRequest){
+    public ApiResult<PostDTO> updatePost(@PathVariable(name = "post_id") Long postId, @Valid @RequestBody PostRequest postRequest) {
         return ApiResult.SUCCESS(postModifyService.updatePost(postRequest));
     }
 

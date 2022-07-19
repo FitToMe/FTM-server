@@ -6,6 +6,5 @@ import java.util.Optional;
 
 public interface PostRepository extends JpaRepository<PostEntity, Long> {
 
-//    Optional<PostEntity> findByTitle(String postTitle);
-    Optional<PostEntity> findAllTitle(String postTitle); //check
+    Optional<PostEntity> findByTitle(String postTitle);
 }

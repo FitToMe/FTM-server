@@ -18,7 +18,7 @@ public class PostModifyService {
 
     public PostDTO updatePost(PostRequest postRequest) throws IllegalArgumentException{    //예외처리 check
         String postTitle = postRequest.getTitle();
-        Optional<PostEntity> postEntity = postRepository.findAllTitle(postTitle);
+        Optional<PostEntity> postEntity = postRepository.findByTitle(postTitle);
 
         if(postEntity.isPresent()){
             return new PostDTO(postRepository.save(PostEntity.builder()
