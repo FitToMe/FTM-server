@@ -1,7 +1,10 @@
 package com.FitToMe.project.DTO;
 
 import com.FitToMe.project.Entity.Post;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
 
@@ -20,12 +23,12 @@ public class PostDTO {
     private LocalDateTime modDate;
 
     // entity -> dto로 변환
-    public PostDTO(Post entity){
-        this.id=entity.getId();
-        this.title=entity.getTitle();
-        this.content=entity.getContent();
-        this.imageURL=entity.getImageURL();
-        this.regDate=entity.getRegDate();
-        this.modDate=entity.getModDate();
+    public PostDTO(Post entity) {
+        this.id = entity.getId();
+        this.title = entity.getTitle();
+        this.content = entity.getContent();
+        this.imageURL = entity.getImageURL();
+        this.regDate = entity.getRegDate();
+        this.modDate = entity.getModDate();
     }
 }
