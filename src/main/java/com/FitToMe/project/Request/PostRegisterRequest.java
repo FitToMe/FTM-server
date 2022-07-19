@@ -1,12 +1,12 @@
 package com.FitToMe.project.Request;
 
+import com.FitToMe.project.Entity.Post.PostEntity;
 import lombok.Getter;
+
 import javax.validation.constraints.NotBlank;
 
 @Getter
-public class PostRequest {
-
-    // Q. 작성자 id는 어떻게 해야할까?
+public class PostRegisterRequest {
 
     @NotBlank(message = "제목은 필수 입력입니다")
     private String title;
@@ -15,5 +15,4 @@ public class PostRequest {
     private String content;
 
     private String imageURL;
-
 }
