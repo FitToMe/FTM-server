@@ -28,7 +28,8 @@ public class Post extends TimeBase {
     private String content;
     private String imageURL;
 
-    public Post(PostRegisterRequest postRegisterRequest) {
+    public Post(User user, PostRegisterRequest postRegisterRequest) {
+        this.user = user;
         this.title = postRegisterRequest.getTitle();
         this.content = postRegisterRequest.getContent();
         this.imageURL = postRegisterRequest.getImageURL();

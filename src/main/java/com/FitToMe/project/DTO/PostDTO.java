@@ -22,6 +22,8 @@ public class PostDTO {
     private LocalDateTime regDate;
     private LocalDateTime modDate;
 
+    private String authorNickname;
+
     // entity -> dto로 변환
     public PostDTO(Post entity) {
         this.id = entity.getId();
@@ -30,5 +32,6 @@ public class PostDTO {
         this.imageURL = entity.getImageURL();
         this.regDate = entity.getRegDate();
         this.modDate = entity.getModDate();
+        this.authorNickname = entity.getUser().getNickname();
     }
 }
