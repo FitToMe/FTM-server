@@ -31,7 +31,7 @@ public class ClassPost extends TimeBase {
     private Integer likeCnt;
     private Integer viewCnt;
     private Integer cost;
-    private Boolean isExecuting;
+    private Boolean isRecruiting;
 
     public ClassPost(User user, PostRegisterRequest postRegisterRequest) {
         this.user = user;
