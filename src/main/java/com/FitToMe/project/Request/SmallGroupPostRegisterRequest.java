@@ -1,5 +1,6 @@
 package com.FitToMe.project.Request;
 
+import com.FitToMe.project.Entity.Category;
 import lombok.Getter;
 
 import javax.validation.constraints.NotBlank;
@@ -16,4 +17,5 @@ public class SmallGroupPostRegisterRequest {
     private String imageURL;
     private Integer totalParticipant;
     private Integer cost;
+    private Category category;
 }

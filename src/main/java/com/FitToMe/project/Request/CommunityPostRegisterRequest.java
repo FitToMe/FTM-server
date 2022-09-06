@@ -1,5 +1,6 @@
 package com.FitToMe.project.Request;
 
+import com.FitToMe.project.Entity.Category;
 import lombok.Getter;
 
 import javax.validation.constraints.NotBlank;
@@ -14,4 +15,5 @@ public class CommunityPostRegisterRequest {
     private String content;
 
     private String imageURL;
+    private Category category;
 }
