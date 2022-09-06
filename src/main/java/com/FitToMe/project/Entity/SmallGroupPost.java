@@ -1,12 +1,14 @@
 package com.FitToMe.project.Entity;
 
-import com.FitToMe.project.Request.PostRegisterRequest;
+import com.FitToMe.project.Request.ClassPostRegisterRequest;
+import com.FitToMe.project.Request.SmallGroupPostRegisterRequest;
 import lombok.*;
 
 import javax.persistence.*;
 
 @Entity
 @Getter
+@Setter
 @AllArgsConstructor
 @NoArgsConstructor
 public class SmallGroupPost extends TimeBase {
@@ -32,10 +34,15 @@ public class SmallGroupPost extends TimeBase {
     private Integer cost;
     private Boolean isRecruiting;
 
-    public SmallGroupPost(User user, PostRegisterRequest postRegisterRequest) {
+    public SmallGroupPost(User user, SmallGroupPostRegisterRequest postRegisterRequest) {
         this.user = user;
         this.title = postRegisterRequest.getTitle();
         this.content = postRegisterRequest.getContent();
         this.imageURL = postRegisterRequest.getImageURL();
+        this.totalParticipant = postRegisterRequest.getTotalParticipant();
+        this.cost = postRegisterRequest.getCost();
+        this.isRecruiting = true;
+        this.participantNum = 0;
+        this.viewCnt = 0;
     }
 }
