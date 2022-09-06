@@ -26,7 +26,6 @@ public class CommunityPost extends TimeBase {
     private String content;
 
     private String imageURL;
-    private Integer likeCnt;
     private Integer viewCnt;
 
     public CommunityPost(User user, PostRegisterRequest postRegisterRequest) {

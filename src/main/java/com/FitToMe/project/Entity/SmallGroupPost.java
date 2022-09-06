@@ -28,7 +28,6 @@ public class SmallGroupPost extends TimeBase {
     private String imageURL;
     private Integer totalParticipant;
     private Integer participantNum;
-    private Integer likeCnt;
     private Integer viewCnt;
     private Integer cost;
     private Boolean isRecruiting;
