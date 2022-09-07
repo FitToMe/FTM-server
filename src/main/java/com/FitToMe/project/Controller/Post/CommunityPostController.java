@@ -3,6 +3,7 @@ package com.FitToMe.project.Controller.Post;
 import com.FitToMe.project.ApiResult.ApiResult;
 import com.FitToMe.project.Config.Security.AuthUser;
 import com.FitToMe.project.DTO.Post.CommunityPostDTO;
+import com.FitToMe.project.Entity.Category;
 import com.FitToMe.project.Entity.User;
 import com.FitToMe.project.Request.Post.CommunityPostModifyRequest;
 import com.FitToMe.project.Request.Post.CommunityPostRegisterRequest;
@@ -13,10 +14,10 @@ import com.FitToMe.project.Service.Post.CommunityPost.CommunityPostStatusService
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import java.util.List;
 
 @Tag(name = "community post", description = "커뮤니티 게시글 API")
 @RestController
@@ -28,12 +29,6 @@ public class CommunityPostController {
     private final CommunityPostModifyService postModifyService;
     private final CommunityPostDeleteService postDeleteService;
     private final CommunityPostStatusService postStatusService;
-
-    @Operation(summary = "전체 게시글 조회")
-    @GetMapping("/")
-    public ApiResult<List<CommunityPostDTO>> readAllPosts() {
-        return ApiResult.SUCCESS(postStatusService.findAll());
-    }
 
     @Operation(summary = "특정 게시글 조회")
     @GetMapping("/{post_id}")
@@ -57,5 +52,11 @@ public class CommunityPostController {
     @DeleteMapping("/{post_id}")
     public ApiResult<Boolean> deletePost(@AuthUser User user, @PathVariable("post_id") Long postId) {
         return ApiResult.SUCCESS(postDeleteService.deletePost(user, postId));
+    }
+
+    @Operation(summary = "카테고리별 게시글 조회")
+    @GetMapping("/")
+    public ApiResult<Page<CommunityPostDTO>> readAllPostsByCategoryAndPaging(@RequestParam Category category, @RequestParam Integer pageNum, @RequestParam Integer pageSize) {
+        return ApiResult.SUCCESS(postStatusService.findAllByCategoryAndPaging(category, pageNum, pageSize));
     }
 }

@@ -1,9 +1,14 @@
 package com.FitToMe.project.Service.Post.CommunityPost;
 
 import com.FitToMe.project.DTO.Post.CommunityPostDTO;
+import com.FitToMe.project.Entity.Category;
 import com.FitToMe.project.Entity.Post.CommunityPost;
 import com.FitToMe.project.Repository.Post.CommunityPostRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -32,5 +37,11 @@ public class CommunityPostStatusService {
     public List<CommunityPostDTO> findAll() {
         List<CommunityPost> posts = communityPostRepository.findAll();
         return posts.stream().map(CommunityPostDTO::new).collect(Collectors.toList());
+    }
+
+    public Page<CommunityPostDTO> findAllByCategoryAndPaging(Category category, Integer pageNum, Integer pageSize) {
+        Pageable pageable = PageRequest.of(pageNum, pageSize, Sort.by("regDate").descending());
+        Page<CommunityPost> posts = communityPostRepository.findAllByCategory(category, pageable);
+        return posts.map(CommunityPostDTO::new);
     }
 }
