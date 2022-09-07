@@ -3,6 +3,7 @@ package com.FitToMe.project.Controller.Post;
 import com.FitToMe.project.ApiResult.ApiResult;
 import com.FitToMe.project.Config.Security.AuthUser;
 import com.FitToMe.project.DTO.Post.SmallGroupPostDTO;
+import com.FitToMe.project.Entity.Category;
 import com.FitToMe.project.Entity.User;
 import com.FitToMe.project.Request.Post.SmallGroupPostModifyRequest;
 import com.FitToMe.project.Request.Post.SmallGroupPostRegisterRequest;
@@ -13,10 +14,10 @@ import com.FitToMe.project.Service.Post.SmallGroupPost.SmallGroupPostStatusServi
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import java.util.List;
 
 @Tag(name = "small group post", description = "소모임 게시글 API")
 @RestController
@@ -28,12 +29,6 @@ public class SmallGroupPostController {
     private final SmallGroupPostModifyService postModifyService;
     private final SmallGroupPostDeleteService postDeleteService;
     private final SmallGroupPostStatusService postStatusService;
-
-    @Operation(summary = "전체 게시글 조회")
-    @GetMapping("/")
-    public ApiResult<List<SmallGroupPostDTO>> readAllPosts() {
-        return ApiResult.SUCCESS(postStatusService.findAll());
-    }
 
     @Operation(summary = "특정 게시글 조회")
     @GetMapping("/{post_id}")
@@ -57,5 +52,11 @@ public class SmallGroupPostController {
     @DeleteMapping("/{post_id}")
     public ApiResult<Boolean> deletePost(@AuthUser User user, @PathVariable("post_id") Long postId) {
         return ApiResult.SUCCESS(postDeleteService.deletePost(user, postId));
+    }
+
+    @Operation(summary = "카테고리별 게시글 조회")
+    @GetMapping("/")
+    public ApiResult<Page<SmallGroupPostDTO>> readAllPostsByCategoryAndPaging(@RequestParam Category category, @RequestParam Integer pageNum, @RequestParam Integer pageSize) {
+        return ApiResult.SUCCESS(postStatusService.findAllByCategoryAndPaging(category, pageNum, pageSize));
     }
 }

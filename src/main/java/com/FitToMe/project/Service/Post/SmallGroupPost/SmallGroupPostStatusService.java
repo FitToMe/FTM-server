@@ -1,9 +1,14 @@
 package com.FitToMe.project.Service.Post.SmallGroupPost;
 
 import com.FitToMe.project.DTO.Post.SmallGroupPostDTO;
+import com.FitToMe.project.Entity.Category;
 import com.FitToMe.project.Entity.Post.SmallGroupPost;
 import com.FitToMe.project.Repository.Post.SmallGroupPostRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -32,5 +37,11 @@ public class SmallGroupPostStatusService {
     public List<SmallGroupPostDTO> findAll() {
         List<SmallGroupPost> posts = smallGroupPostRepository.findAll();
         return posts.stream().map(SmallGroupPostDTO::new).collect(Collectors.toList());
+    }
+
+    public Page<SmallGroupPostDTO> findAllByCategoryAndPaging(Category category, Integer pageNum, Integer pageSize) {
+        Pageable pageable = PageRequest.of(pageNum, pageSize, Sort.by("regDate").descending());
+        Page<SmallGroupPost> posts = smallGroupPostRepository.findAllByCategory(category, pageable);
+        return posts.map(SmallGroupPostDTO::new);
     }
 }
