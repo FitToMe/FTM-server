@@ -1,9 +1,14 @@
 package com.FitToMe.project.Service.Post.ClassPost;
 
 import com.FitToMe.project.DTO.Post.ClassPostDTO;
+import com.FitToMe.project.Entity.Category;
 import com.FitToMe.project.Entity.Post.ClassPost;
 import com.FitToMe.project.Repository.Post.ClassPostRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -32,5 +37,11 @@ public class ClassPostStatusService {
     public List<ClassPostDTO> findAll() {
         List<ClassPost> posts = classPostRepository.findAll();
         return posts.stream().map(ClassPostDTO::new).collect(Collectors.toList());
+    }
+
+    public Page<ClassPostDTO> findAllByCategoryAndPaging(Category category, Integer pageNum, Integer pageSize) {
+        Pageable pageable = PageRequest.of(pageNum, pageSize, Sort.by("regDate").descending());
+        Page<ClassPost> posts = classPostRepository.findAllByCategory(category, pageable);
+        return posts.map(ClassPostDTO::new);
     }
 }
