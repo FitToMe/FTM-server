@@ -1,11 +1,12 @@
 package com.FitToMe.project.Request;
 
+import com.FitToMe.project.Entity.Category;
 import lombok.Getter;
 
 import javax.validation.constraints.NotBlank;
 
 @Getter
-public class PostRegisterRequest {
+public class CommunityPostRegisterRequest {
 
     @NotBlank(message = "제목은 필수 입력입니다")
     private String title;
@@ -14,4 +15,5 @@ public class PostRegisterRequest {
     private String content;
 
     private String imageURL;
+    private Category category;
 }
