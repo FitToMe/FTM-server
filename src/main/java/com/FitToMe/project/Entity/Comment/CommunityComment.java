@@ -30,20 +30,20 @@ public class CommunityComment {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "community_post_id")
-    private CommunityPost post;
+    private CommunityPost communityPost;
 
-    public static CommunityComment createComment(CommunityCommentRequest commentRequest, User user, CommunityPost post) {
+    public static CommunityComment createComment(CommunityCommentRequest commentRequest, User user, CommunityPost communityPost) {
         return CommunityComment.builder()
                 .commentRequest(commentRequest)
                 .user(user)
-                .post(post)
+                .communityPost(communityPost)
                 .build();
     }
 
     @Builder
-    private CommunityComment(CommunityCommentRequest commentRequest, User user, CommunityPost post) {
+    private CommunityComment(CommunityCommentRequest commentRequest, User user, CommunityPost communityPost) {
         this.content = commentRequest.getContent();
         this.user = user;
-        this.post = post;
+        this.communityPost = communityPost;
     }
 }

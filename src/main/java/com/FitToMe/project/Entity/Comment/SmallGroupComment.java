@@ -30,20 +30,20 @@ public class SmallGroupComment {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "smallGroup_post_id")
-    private SmallGroupPost post;
+    private SmallGroupPost smallGroupPost;
 
-    public static SmallGroupComment createComment(SmallGroupCommentRequest commentRequest, User user, SmallGroupPost post) {
+    public static SmallGroupComment createComment(SmallGroupCommentRequest commentRequest, User user, SmallGroupPost smallGroupPost) {
         return SmallGroupComment.builder()
                 .commentRequest(commentRequest)
                 .user(user)
-                .post(post)
+                .smallGroupPost(smallGroupPost)
                 .build();
     }
 
     @Builder
-    private SmallGroupComment(SmallGroupCommentRequest commentRequest, User user, SmallGroupPost post) {
+    private SmallGroupComment(SmallGroupCommentRequest commentRequest, User user, SmallGroupPost smallGroupPost) {
         this.content = commentRequest.getContent();
         this.user = user;
-        this.post = post;
+        this.smallGroupPost = smallGroupPost;
     }
 }
