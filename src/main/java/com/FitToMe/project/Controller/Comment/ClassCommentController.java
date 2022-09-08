@@ -18,6 +18,7 @@ import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
+@RequestMapping("/classPost")
 public class ClassCommentController {
     private final ClassCommentRegisterService commentRegisterService;
     private final ClassCommentModifyService commentModifyService;
@@ -26,25 +27,25 @@ public class ClassCommentController {
 
 
     @Operation(summary = "클래스 게시글에 댓글 작성")
-    @PostMapping("/classPost/{classPostId}/comments")
+    @PostMapping("/{classPostId}/comments")
     public ApiResult<ClassCommentDTO> addComment(@AuthUser User user, @PathVariable Long classPostId, @Valid @RequestBody ClassCommentRequest commentRequest) {
         return ApiResult.SUCCESS(commentRegisterService.addComment(commentRequest, user, classPostId));
     }
 
     @Operation(summary = "클래스 게시글의 전체 댓글 조회")
-    @GetMapping("/classPost/{classPostId}/comments")
+    @GetMapping("/{classPostId}/comments")
     public ApiResult<List<ClassCommentDTO>> readAllComments(@PathVariable Long classPostId) {
         return ApiResult.SUCCESS(commentSearchService.findByClassPostId(classPostId));
     }
 
     @Operation(summary = "클래스 게시글의 특정 댓글 수정")
-    @PutMapping("/classPost/{classPostId}/comments/{commentId}")
+    @PutMapping("/{classPostId}/comments/{commentId}")
     public ApiResult<ClassCommentDTO> updateComment(@AuthUser User user, @PathVariable Long classPostId, @PathVariable Long commentId, @Valid @RequestBody ClassCommentRequest commentRequest) {
         return ApiResult.SUCCESS(commentModifyService.updateComment(user, classPostId, commentId, commentRequest));
     }
 
     @Operation(summary = "클래스 게시글의 특정 댓글 삭제")
-    @DeleteMapping("/classPost/{classPostId}/comments/{commentId}")
+    @DeleteMapping("/{classPostId}/comments/{commentId}")
     public ApiResult<Boolean> deleteComment(@AuthUser User user, @PathVariable Long classPostId, @PathVariable Long commentId) {
         return ApiResult.SUCCESS(commentDeleteService.deleteComment(commentId, user));
     }

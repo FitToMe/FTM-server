@@ -18,6 +18,7 @@ import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
+@RequestMapping("/smallGroupPost")
 public class SmallGroupCommentController {
     private final SmallGroupCommentRegisterService commentRegisterService;
     private final SmallGroupCommentModifyService commentModifyService;
@@ -26,25 +27,25 @@ public class SmallGroupCommentController {
 
 
     @Operation(summary = "커뮤니티 게시글에 댓글 작성")
-    @PostMapping("/smallGroupPost/{smallGroupPostId}/comments")
+    @PostMapping("/{smallGroupPostId}/comments")
     public ApiResult<SmallGroupCommentDTO> addComment(@AuthUser User user, @PathVariable Long smallGroupPostId, @Valid @RequestBody SmallGroupCommentRequest commentRequest) {
         return ApiResult.SUCCESS(commentRegisterService.addComment(commentRequest, user, smallGroupPostId));
     }
 
     @Operation(summary = "커뮤니티 게시글의 전체 댓글 조회")
-    @GetMapping("/smallGroupPost/{smallGroupPostId}/comments")
+    @GetMapping("/{smallGroupPostId}/comments")
     public ApiResult<List<SmallGroupCommentDTO>> readAllComments(@PathVariable Long smallGroupPostId) {
         return ApiResult.SUCCESS(commentSearchService.findBySmallGroupId(smallGroupPostId));
     }
 
     @Operation(summary = "커뮤니티 게시글의 특정 댓글 수정")
-    @PutMapping("/smallGroupPost/{smallGroupPostId}/comments/{commentId}")
+    @PutMapping("/{smallGroupPostId}/comments/{commentId}")
     public ApiResult<SmallGroupCommentDTO> updateComment(@AuthUser User user, @PathVariable Long smallGroupPostId, @PathVariable Long commentId, @Valid @RequestBody SmallGroupCommentRequest commentRequest) {
         return ApiResult.SUCCESS(commentModifyService.updateComment(user, smallGroupPostId, commentId, commentRequest));
     }
 
     @Operation(summary = "커뮤니티 게시글의 특정 댓글 삭제")
-    @DeleteMapping("/smallGroupPost/{smallGroupPostId}/comments/{commentId}")
+    @DeleteMapping("/{smallGroupPostId}/comments/{commentId}")
     public ApiResult<Boolean> deleteComment(@AuthUser User user, @PathVariable Long smallGroupPostId, @PathVariable Long commentId) {
         return ApiResult.SUCCESS(commentDeleteService.deleteComment(commentId, user));
     }

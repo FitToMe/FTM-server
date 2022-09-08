@@ -18,6 +18,7 @@ import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
+@RequestMapping("/communityPost")
 public class CommunityController {
     private final CommunityCommentRegisterService commentRegisterService;
     private final CommunityCommentModifyService commentModifyService;
@@ -26,25 +27,25 @@ public class CommunityController {
 
 
     @Operation(summary = "커뮤니티 게시글에 댓글 작성")
-    @PostMapping("/communityPost/{communityPostId}/comments")
+    @PostMapping("/{communityPostId}/comments")
     public ApiResult<CommunityCommentDTO> addComment(@AuthUser User user, @PathVariable Long communityPostId, @Valid @RequestBody CommunityCommentRequest commentRequest) {
         return ApiResult.SUCCESS(commentRegisterService.addComment(commentRequest, user, communityPostId));
     }
 
     @Operation(summary = "커뮤니티 게시글의 전체 댓글 조회")
-    @GetMapping("/communityPost/{communityPostId}/comments")
+    @GetMapping("/{communityPostId}/comments")
     public ApiResult<List<CommunityCommentDTO>> readAllComments(@PathVariable Long communityPostId) {
         return ApiResult.SUCCESS(commentSearchService.findByCommunityPostId(communityPostId));
     }
 
     @Operation(summary = "커뮤니티 게시글의 특정 댓글 수정")
-    @PutMapping("/communityPost/{communityPostId}/comments/{commentId}")
+    @PutMapping("/{communityPostId}/comments/{commentId}")
     public ApiResult<CommunityCommentDTO> updateComment(@AuthUser User user, @PathVariable Long communityPostId, @PathVariable Long commentId, @Valid @RequestBody CommunityCommentRequest commentRequest) {
         return ApiResult.SUCCESS(commentModifyService.updateComment(user, communityPostId, commentId, commentRequest));
     }
 
     @Operation(summary = "커뮤니티 게시글의 특정 댓글 삭제")
-    @DeleteMapping("/communityPost/{communityPostId}/comments/{commentId}")
+    @DeleteMapping("/{communityPostId}/comments/{commentId}")
     public ApiResult<Boolean> deleteComment(@AuthUser User user, @PathVariable Long communityPostId, @PathVariable Long commentId) {
         return ApiResult.SUCCESS(commentDeleteService.deleteComment(commentId, user));
     }
