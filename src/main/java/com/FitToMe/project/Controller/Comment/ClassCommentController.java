@@ -10,12 +10,14 @@ import com.FitToMe.project.Service.Comment.ClassComment.ClassCommentModifyServic
 import com.FitToMe.project.Service.Comment.ClassComment.ClassCommentRegisterService;
 import com.FitToMe.project.Service.Comment.ClassComment.ClassCommentSearchService;
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.List;
 
+@Tag(name = "comment of class post", description = "클래스 게시글의 댓글 API")
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/classPost")

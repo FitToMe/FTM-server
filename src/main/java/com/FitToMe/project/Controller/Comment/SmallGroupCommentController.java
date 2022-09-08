@@ -10,12 +10,14 @@ import com.FitToMe.project.Service.Comment.SmallGroupComment.SmallGroupCommentMo
 import com.FitToMe.project.Service.Comment.SmallGroupComment.SmallGroupCommentRegisterService;
 import com.FitToMe.project.Service.Comment.SmallGroupComment.SmallGroupCommentSearchService;
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.List;
 
+@Tag(name = "comment of smallGroup post", description = "소모임 게시글의 댓글 API")
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/smallGroupPost")

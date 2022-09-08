@@ -10,12 +10,14 @@ import com.FitToMe.project.Service.Comment.CommunityComment.CommunityCommentModi
 import com.FitToMe.project.Service.Comment.CommunityComment.CommunityCommentRegisterService;
 import com.FitToMe.project.Service.Comment.CommunityComment.CommunityCommentSearchService;
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.List;
 
+@Tag(name = "comment of community post", description = "커뮤니티 게시글의 댓글 API")
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/communityPost")
