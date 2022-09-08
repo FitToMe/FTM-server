@@ -2,10 +2,11 @@ package com.FitToMe.project.Service.Comment.CommunityComment;
 
 import com.FitToMe.project.DTO.Comment.CommunityCommentDTO;
 import com.FitToMe.project.Entity.Comment.CommunityComment;
-import com.FitToMe.project.Entity.CommunityPost;
+import com.FitToMe.project.Entity.Post.CommunityPost;
 import com.FitToMe.project.Entity.User;
 import com.FitToMe.project.Repository.*;
 import com.FitToMe.project.Repository.Comment.CommunityCommentRepository;
+import com.FitToMe.project.Repository.Post.CommunityPostRepository;
 import com.FitToMe.project.Request.Comment.CommunityCommentRequest;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;

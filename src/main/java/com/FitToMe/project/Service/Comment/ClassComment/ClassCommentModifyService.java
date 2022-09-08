@@ -2,10 +2,10 @@ package com.FitToMe.project.Service.Comment.ClassComment;
 
 import com.FitToMe.project.DTO.Comment.ClassCommentDTO;
 import com.FitToMe.project.Entity.Comment.ClassComment;
-import com.FitToMe.project.Entity.ClassPost;
+import com.FitToMe.project.Entity.Post.ClassPost;
 import com.FitToMe.project.Entity.User;
 import com.FitToMe.project.Repository.Comment.ClassCommentRepository;
-import com.FitToMe.project.Repository.ClassPostRepository;
+import com.FitToMe.project.Repository.Post.ClassPostRepository;
 import com.FitToMe.project.Repository.UserRepository;
 import com.FitToMe.project.Request.Comment.ClassCommentRequest;
 import lombok.RequiredArgsConstructor;

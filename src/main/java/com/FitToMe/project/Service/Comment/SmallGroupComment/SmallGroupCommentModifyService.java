@@ -2,10 +2,10 @@ package com.FitToMe.project.Service.Comment.SmallGroupComment;
 
 import com.FitToMe.project.DTO.Comment.SmallGroupCommentDTO;
 import com.FitToMe.project.Entity.Comment.SmallGroupComment;
-import com.FitToMe.project.Entity.SmallGroupPost;
+import com.FitToMe.project.Entity.Post.SmallGroupPost;
 import com.FitToMe.project.Entity.User;
 import com.FitToMe.project.Repository.Comment.SmallGroupCommentRepository;
-import com.FitToMe.project.Repository.SmallGroupPostRepository;
+import com.FitToMe.project.Repository.Post.SmallGroupPostRepository;
 import com.FitToMe.project.Repository.UserRepository;
 import com.FitToMe.project.Request.Comment.SmallGroupCommentRequest;
 import lombok.RequiredArgsConstructor;

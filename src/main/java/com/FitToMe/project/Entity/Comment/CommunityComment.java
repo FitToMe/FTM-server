@@ -1,6 +1,6 @@
 package com.FitToMe.project.Entity.Comment;
 
-import com.FitToMe.project.Entity.CommunityPost;
+import com.FitToMe.project.Entity.Post.CommunityPost;
 import com.FitToMe.project.Entity.User;
 import com.FitToMe.project.Request.Comment.CommunityCommentRequest;
 import lombok.AllArgsConstructor;
