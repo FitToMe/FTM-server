@@ -37,12 +37,6 @@ public class ClassCommentController {
         return ApiResult.SUCCESS(commentSearchService.findByClassPostId(classPostId));
     }
 
-    @Operation(summary = "특정 유저의 클래스 게시글의 댓글 목록 조회")
-    @GetMapping("/comments/users/{userId}")
-    public ApiResult<List<ClassCommentDTO>> readOnlyUserComment(@PathVariable Long userId) {
-        return ApiResult.SUCCESS(commentSearchService.findByUserId(userId));
-    }
-
     @Operation(summary = "클래스 게시글의 특정 댓글 수정")
     @PutMapping("/classPost/{classPostId}/comments/{commentId}")
     public ApiResult<ClassCommentDTO> updateComment(@AuthUser User user, @PathVariable Long classPostId, @PathVariable Long commentId, @Valid @RequestBody ClassCommentRequest commentRequest) {

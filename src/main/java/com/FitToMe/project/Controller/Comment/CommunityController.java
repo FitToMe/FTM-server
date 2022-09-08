@@ -37,12 +37,6 @@ public class CommunityController {
         return ApiResult.SUCCESS(commentSearchService.findByCommunityPostId(communityPostId));
     }
 
-    @Operation(summary = "특정 유저의 커뮤니티 게시글의 댓글 목록 조회")
-    @GetMapping("/comments/users/{userId}")
-    public ApiResult<List<CommunityCommentDTO>> readOnlyUserComment(@PathVariable Long userId) {
-        return ApiResult.SUCCESS(commentSearchService.findByUserId(userId));
-    }
-
     @Operation(summary = "커뮤니티 게시글의 특정 댓글 수정")
     @PutMapping("/communityPost/{communityPostId}/comments/{commentId}")
     public ApiResult<CommunityCommentDTO> updateComment(@AuthUser User user, @PathVariable Long communityPostId, @PathVariable Long commentId, @Valid @RequestBody CommunityCommentRequest commentRequest) {

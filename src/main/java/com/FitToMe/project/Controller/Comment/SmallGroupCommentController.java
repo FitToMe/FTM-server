@@ -37,12 +37,6 @@ public class SmallGroupCommentController {
         return ApiResult.SUCCESS(commentSearchService.findBySmallGroupId(smallGroupPostId));
     }
 
-    @Operation(summary = "특정 유저의 커뮤니티 게시글의 댓글 목록 조회")
-    @GetMapping("/comments/users/{userId}")
-    public ApiResult<List<SmallGroupCommentDTO>> readOnlyUserComment(@PathVariable Long userId) {
-        return ApiResult.SUCCESS(commentSearchService.findByUserId(userId));
-    }
-
     @Operation(summary = "커뮤니티 게시글의 특정 댓글 수정")
     @PutMapping("/smallGroupPost/{smallGroupPostId}/comments/{commentId}")
     public ApiResult<SmallGroupCommentDTO> updateComment(@AuthUser User user, @PathVariable Long smallGroupPostId, @PathVariable Long commentId, @Valid @RequestBody SmallGroupCommentRequest commentRequest) {
