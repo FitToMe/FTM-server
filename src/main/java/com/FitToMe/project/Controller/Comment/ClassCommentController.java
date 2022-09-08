@@ -25,7 +25,7 @@ public class ClassCommentController {
     private final ClassCommentDeleteService commentDeleteService;
 
 
-    @Operation(summary = "클래스 게스글에 댓글 작성")
+    @Operation(summary = "클래스 게시글에 댓글 작성")
     @PostMapping("/classPost/{classPostId}/comments")
     public ApiResult<ClassCommentDTO> addComment(@AuthUser User user, @PathVariable Long classPostId, @Valid @RequestBody ClassCommentRequest commentRequest) {
         return ApiResult.SUCCESS(commentRegisterService.addComment(commentRequest, user, classPostId));
@@ -43,13 +43,13 @@ public class ClassCommentController {
         return ApiResult.SUCCESS(commentSearchService.findByUserId(userId));
     }
 
-    @Operation(summary = "클래스 게스글의 특정 댓글 수정")
+    @Operation(summary = "클래스 게시글의 특정 댓글 수정")
     @PutMapping("/classPost/{classPostId}/comments/{commentId}")
     public ApiResult<ClassCommentDTO> updateComment(@AuthUser User user, @PathVariable Long classPostId, @PathVariable Long commentId, @Valid @RequestBody ClassCommentRequest commentRequest) {
         return ApiResult.SUCCESS(commentModifyService.updateComment(user, classPostId, commentId, commentRequest));
     }
 
-    @Operation(summary = "클래스 게스글의 특정 댓글 삭제")
+    @Operation(summary = "클래스 게시글의 특정 댓글 삭제")
     @DeleteMapping("/classPost/{classPostId}/comments/{commentId}")
     public ApiResult<Boolean> deleteComment(@AuthUser User user, @PathVariable Long classPostId, @PathVariable Long commentId) {
         return ApiResult.SUCCESS(commentDeleteService.deleteComment(commentId, user));

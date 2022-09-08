@@ -25,7 +25,7 @@ public class CommunityController {
     private final CommunityCommentDeleteService commentDeleteService;
 
 
-    @Operation(summary = "커뮤니티 게스글에 댓글 작성")
+    @Operation(summary = "커뮤니티 게시글에 댓글 작성")
     @PostMapping("/communityPost/{communityPostId}/comments")
     public ApiResult<CommunityCommentDTO> addComment(@AuthUser User user, @PathVariable Long communityPostId, @Valid @RequestBody CommunityCommentRequest commentRequest) {
         return ApiResult.SUCCESS(commentRegisterService.addComment(commentRequest, user, communityPostId));
