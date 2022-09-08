@@ -17,7 +17,7 @@ import java.time.LocalDateTime;
 @MappedSuperclass   // 클래스가 만들어지지 않는 기초 클래스라는 Annotaion
 @EntityListeners(value = {AuditingEntityListener.class})    // Entity의 변화를 감지하는 리스너
 @Getter
-abstract class TimeBase {
+public abstract class TimeBase {
 
     @CreatedDate        // Entity가 생성되어 저장될 때, 시간이 자동 저장
     @Column(name = "reg_date", updatable = false)
