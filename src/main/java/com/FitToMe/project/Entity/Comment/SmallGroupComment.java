@@ -29,7 +29,7 @@ public class SmallGroupComment {
     private User user;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "smallGroupPost_id")
+    @JoinColumn(name = "smallGroup_post_id")
     private SmallGroupPost post;
 
     public static SmallGroupComment createComment(SmallGroupCommentRequest commentRequest, User user, SmallGroupPost post) {

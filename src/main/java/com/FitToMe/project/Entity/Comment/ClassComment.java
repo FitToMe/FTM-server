@@ -29,7 +29,7 @@ public class ClassComment {
     private User user;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "classPost_id")
+    @JoinColumn(name = "class_post_id")
     private ClassPost post;
 
     public static ClassComment createComment(ClassCommentRequest commentRequest, User user, ClassPost post) {
