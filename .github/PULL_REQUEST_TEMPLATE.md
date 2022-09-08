@@ -1,6 +1,9 @@
 ## 관련 이슈
 
-resolve #{이슈번호}
+resolve #
+
+<!-- resolve #{이슈번호} -->
+<!-- ex) resolve #27 -->
 
 <br>
 
