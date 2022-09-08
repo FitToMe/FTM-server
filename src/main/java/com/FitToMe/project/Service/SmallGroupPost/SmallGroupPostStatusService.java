@@ -1,8 +1,9 @@
 package com.FitToMe.project.Service.SmallGroupPost;
 
 import com.FitToMe.project.DTO.SmallGroupPostDTO;
-import com.FitToMe.project.DTO.SmallGroupPostDTO;
 import com.FitToMe.project.Entity.SmallGroupPost;
+import com.FitToMe.project.Exception.CustomError;
+import com.FitToMe.project.Exception.CustomException;
 import com.FitToMe.project.Repository.SmallGroupPostRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -20,13 +21,13 @@ public class SmallGroupPostStatusService {
 
     public SmallGroupPostDTO findOne(Long postId) {
         SmallGroupPost post = smallGroupPostRepository.findById(postId)
-                .orElseThrow(() -> new NullPointerException("해당 id 게시글이 존재하지 않습니다"));
+                .orElseThrow(() -> new CustomException(CustomError.POST_NOT_EXIST));
         return new SmallGroupPostDTO(post);
     }
 
     public SmallGroupPostDTO findOne(String postTitle) {
         SmallGroupPost post = smallGroupPostRepository.findByTitle(postTitle)
-                .orElseThrow(() -> new NullPointerException("해당 title 게시글이 존재하지 않습니다"));
+                .orElseThrow(() -> new CustomException(CustomError.POST_NOT_EXIST));
         return new SmallGroupPostDTO(post);
     }
 

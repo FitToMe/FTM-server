@@ -1,9 +1,9 @@
 package com.FitToMe.project.Service.ClassPost;
 
 import com.FitToMe.project.DTO.ClassPostDTO;
-import com.FitToMe.project.DTO.CommunityPostDTO;
 import com.FitToMe.project.Entity.ClassPost;
-import com.FitToMe.project.Entity.CommunityPost;
+import com.FitToMe.project.Exception.CustomError;
+import com.FitToMe.project.Exception.CustomException;
 import com.FitToMe.project.Repository.ClassPostRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -21,13 +21,13 @@ public class ClassPostStatusService {
 
     public ClassPostDTO findOne(Long postId) {
         ClassPost post = classPostRepository.findById(postId)
-                .orElseThrow(() -> new NullPointerException("해당 id 게시글이 존재하지 않습니다"));
+                .orElseThrow(() -> new CustomException(CustomError.POST_NOT_EXIST));
         return new ClassPostDTO(post);
     }
 
     public ClassPostDTO findOne(String postTitle) {
         ClassPost post = classPostRepository.findByTitle(postTitle)
-                .orElseThrow(() -> new NullPointerException("해당 title 게시글이 존재하지 않습니다"));
+                .orElseThrow(() -> new CustomException(CustomError.POST_NOT_EXIST));
         return new ClassPostDTO(post);
     }
 
