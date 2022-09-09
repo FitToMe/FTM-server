@@ -18,6 +18,7 @@ public enum CustomError {
 
     // 404 Not Found
     POST_NOT_EXIST(HttpStatus.NOT_FOUND, "존재하지 않는 게시글입니다"),
+    COMMENT_NOT_EXIST(HttpStatus.NOT_FOUND, "존재하지 않는 댓글입니다"),
     USER_NOT_EXIST(HttpStatus.NOT_FOUND, "존재하지 않는 회원입니다"),
 
     // 409 Conflict
