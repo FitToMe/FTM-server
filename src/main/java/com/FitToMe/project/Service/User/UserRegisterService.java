@@ -2,6 +2,8 @@ package com.FitToMe.project.Service.User;
 
 import com.FitToMe.project.DTO.UserDTO;
 import com.FitToMe.project.Entity.User;
+import com.FitToMe.project.Exception.CustomError;
+import com.FitToMe.project.Exception.CustomException;
 import com.FitToMe.project.Repository.UserRepository;
 import com.FitToMe.project.Request.UserSignupRequest;
 import lombok.RequiredArgsConstructor;
@@ -19,7 +21,7 @@ public class UserRegisterService {
 
     public UserDTO signup(UserSignupRequest userSignupRequest) {
         if (userRepository.existsByEmail(userSignupRequest.getEmail())) {
-            throw new RuntimeException("이미 사용중인 email 주소입니다");
+            throw new CustomException(CustomError.EMAIL_ALREADY_REGISTERED);
         }
 
         User newUser = new User(userSignupRequest, passwordEncoder);

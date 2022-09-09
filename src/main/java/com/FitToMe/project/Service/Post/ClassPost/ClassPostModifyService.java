@@ -3,6 +3,8 @@ package com.FitToMe.project.Service.Post.ClassPost;
 import com.FitToMe.project.DTO.Post.ClassPostDTO;
 import com.FitToMe.project.Entity.Post.ClassPost;
 import com.FitToMe.project.Entity.User;
+import com.FitToMe.project.Exception.CustomError;
+import com.FitToMe.project.Exception.CustomException;
 import com.FitToMe.project.Repository.Post.ClassPostRepository;
 import com.FitToMe.project.Request.Post.ClassPostModifyRequest;
 import lombok.RequiredArgsConstructor;
@@ -18,12 +20,11 @@ public class ClassPostModifyService {
 
     public ClassPostDTO updatePost(User user, Long postId, ClassPostModifyRequest postModifyRequest) {
         ClassPost post = classPostRepository.findById(postId)
-                .orElseThrow(() -> new IllegalArgumentException("해당 게사판은 존재하지 않습니다"));
+                .orElseThrow(() -> new CustomException(CustomError.POST_NOT_EXIST));
 
         if (!post.getUser().equals(user)) {
-            throw new SecurityException("해당 게시글을 수정할 수 있는 권한이 없습니다");
+            throw new CustomException(CustomError.NO_AUTHORITY_TO_MODIFY_POST);
         }
-
         if (postModifyRequest.getTitle() != null) {
             post.setTitle(postModifyRequest.getTitle());
         }

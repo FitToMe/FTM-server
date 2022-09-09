@@ -1,5 +1,6 @@
 package com.FitToMe.project.ApiResult;
 
+import com.FitToMe.project.Exception.CustomException;
 import lombok.Getter;
 import org.springframework.http.HttpStatus;
 
@@ -25,5 +26,9 @@ public class ApiResult<T> {
 
     public static ApiResult<?> ERROR(String message, HttpStatus status) {
         return new ApiResult<>(false, null, new ApiError(message, status));
+    }
+
+    public static ApiResult<?> ERROR(CustomException customException) {
+        return new ApiResult<>(false, null, new ApiError(customException));
     }
 }

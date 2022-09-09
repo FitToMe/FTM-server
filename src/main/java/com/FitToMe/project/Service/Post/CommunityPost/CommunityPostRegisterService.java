@@ -3,6 +3,8 @@ package com.FitToMe.project.Service.Post.CommunityPost;
 import com.FitToMe.project.DTO.Post.CommunityPostDTO;
 import com.FitToMe.project.Entity.Post.CommunityPost;
 import com.FitToMe.project.Entity.User;
+import com.FitToMe.project.Exception.CustomError;
+import com.FitToMe.project.Exception.CustomException;
 import com.FitToMe.project.Repository.Post.CommunityPostRepository;
 import com.FitToMe.project.Request.Post.CommunityPostRegisterRequest;
 import lombok.RequiredArgsConstructor;
@@ -18,7 +20,7 @@ public class CommunityPostRegisterService {
 
     public CommunityPostDTO createPost(User user, CommunityPostRegisterRequest postRegisterRequest) {
         if (user == null) {
-            throw new RuntimeException("로그인이 필요합니다");
+            throw new CustomException(CustomError.NEED_LOGIN);
         }
 
         return new CommunityPostDTO(communityPostRepository.save(new CommunityPost(user, postRegisterRequest)));

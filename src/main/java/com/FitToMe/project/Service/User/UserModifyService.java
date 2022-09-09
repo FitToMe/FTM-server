@@ -2,6 +2,8 @@ package com.FitToMe.project.Service.User;
 
 import com.FitToMe.project.DTO.UserDTO;
 import com.FitToMe.project.Entity.User;
+import com.FitToMe.project.Exception.CustomError;
+import com.FitToMe.project.Exception.CustomException;
 import com.FitToMe.project.Repository.UserRepository;
 import com.FitToMe.project.Request.UserModifyRequest;
 import lombok.RequiredArgsConstructor;
@@ -19,7 +21,7 @@ public class UserModifyService {
 
     public UserDTO modifyUser(User user, UserModifyRequest userModifyRequest) {
         if (!userRepository.existsById(user.getId())) {
-            throw new RuntimeException("존재하지 않는 회원입니다");
+            throw new CustomException(CustomError.USER_NOT_EXIST);
         }
 
         if (userModifyRequest.getNickname() != null) {
@@ -27,7 +29,7 @@ public class UserModifyService {
         }
         if (userModifyRequest.getEmail() != null) {
             if (userRepository.existsByEmail(userModifyRequest.getEmail())) {
-                throw new RuntimeException("해당 email 계정은 이미 사용중입니다");
+                throw new CustomException(CustomError.EMAIL_ALREADY_REGISTERED);
             }
             user.setEmail(userModifyRequest.getEmail());
         }
