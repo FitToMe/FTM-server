@@ -3,6 +3,8 @@ package com.FitToMe.project.Service.Post.ClassPost;
 import com.FitToMe.project.DTO.Post.ClassPostDTO;
 import com.FitToMe.project.Entity.Post.ClassPost;
 import com.FitToMe.project.Entity.User;
+import com.FitToMe.project.Exception.CustomError;
+import com.FitToMe.project.Exception.CustomException;
 import com.FitToMe.project.Repository.Post.ClassPostRepository;
 import com.FitToMe.project.Request.Post.ClassPostRegisterRequest;
 import lombok.RequiredArgsConstructor;
@@ -18,7 +20,7 @@ public class ClassPostRegisterService {
 
     public ClassPostDTO createPost(User user, ClassPostRegisterRequest postRegisterRequest) {
         if (user == null) {
-            throw new RuntimeException("로그인이 필요합니다");
+            throw new CustomException(CustomError.NEED_LOGIN);
         }
 
         return new ClassPostDTO(classPostRepository.save(new ClassPost(user, postRegisterRequest)));

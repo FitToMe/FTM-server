@@ -1,5 +1,7 @@
 package com.FitToMe.project.Service.User;
 
+import com.FitToMe.project.Exception.CustomError;
+import com.FitToMe.project.Exception.CustomException;
 import com.FitToMe.project.Repository.UserRepository;
 import com.FitToMe.project.Request.LoginRequest;
 import lombok.RequiredArgsConstructor;
@@ -20,7 +22,7 @@ public class UserLoginService {
 
     public boolean login(LoginRequest loginRequest) {
         if (!userRepository.existsByEmail(loginRequest.getEmail())) {
-            throw new RuntimeException("존재하지 않는 이메일 계정입니다");
+            throw new CustomException(CustomError.NOT_FOUND_EMAIL);
         }
 
         Authentication authentication = authenticationManager.authenticate(

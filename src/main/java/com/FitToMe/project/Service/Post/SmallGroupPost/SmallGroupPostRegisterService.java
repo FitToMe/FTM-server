@@ -3,6 +3,8 @@ package com.FitToMe.project.Service.Post.SmallGroupPost;
 import com.FitToMe.project.DTO.Post.SmallGroupPostDTO;
 import com.FitToMe.project.Entity.Post.SmallGroupPost;
 import com.FitToMe.project.Entity.User;
+import com.FitToMe.project.Exception.CustomError;
+import com.FitToMe.project.Exception.CustomException;
 import com.FitToMe.project.Repository.Post.SmallGroupPostRepository;
 import com.FitToMe.project.Request.Post.SmallGroupPostRegisterRequest;
 import lombok.RequiredArgsConstructor;
@@ -18,7 +20,7 @@ public class SmallGroupPostRegisterService {
 
     public SmallGroupPostDTO createPost(User user, SmallGroupPostRegisterRequest postRegisterRequest) {
         if (user == null) {
-            throw new RuntimeException("로그인이 필요합니다");
+            throw new CustomException(CustomError.NEED_LOGIN);
         }
 
         return new SmallGroupPostDTO(smallGroupPostRepository.save(new SmallGroupPost(user, postRegisterRequest)));

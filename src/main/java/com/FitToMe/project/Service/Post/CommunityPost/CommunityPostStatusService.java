@@ -3,6 +3,8 @@ package com.FitToMe.project.Service.Post.CommunityPost;
 import com.FitToMe.project.DTO.Post.CommunityPostDTO;
 import com.FitToMe.project.Entity.Category;
 import com.FitToMe.project.Entity.Post.CommunityPost;
+import com.FitToMe.project.Exception.CustomError;
+import com.FitToMe.project.Exception.CustomException;
 import com.FitToMe.project.Repository.Post.CommunityPostRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -24,13 +26,13 @@ public class CommunityPostStatusService {
 
     public CommunityPostDTO findOne(Long postId) {
         CommunityPost post = communityPostRepository.findById(postId)
-                .orElseThrow(() -> new NullPointerException("해당 id 게시글이 존재하지 않습니다"));
+                .orElseThrow(() -> new CustomException(CustomError.POST_NOT_EXIST));
         return new CommunityPostDTO(post);
     }
 
     public CommunityPostDTO findOne(String postTitle) {
         CommunityPost post = communityPostRepository.findByTitle(postTitle)
-                .orElseThrow(() -> new NullPointerException("해당 title 게시글이 존재하지 않습니다"));
+                .orElseThrow(() -> new CustomException(CustomError.POST_NOT_EXIST));
         return new CommunityPostDTO(post);
     }
 
