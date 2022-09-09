@@ -4,6 +4,8 @@ import com.FitToMe.project.DTO.Comment.ClassCommentDTO;
 import com.FitToMe.project.Entity.Comment.ClassComment;
 import com.FitToMe.project.Entity.Post.ClassPost;
 import com.FitToMe.project.Entity.User;
+import com.FitToMe.project.Exception.CustomError;
+import com.FitToMe.project.Exception.CustomException;
 import com.FitToMe.project.Repository.Comment.ClassCommentRepository;
 import com.FitToMe.project.Repository.Post.ClassPostRepository;
 import com.FitToMe.project.Repository.UserRepository;
@@ -25,13 +27,14 @@ public class ClassCommentRegisterService {
     public ClassCommentDTO addComment(ClassCommentRequest commentRequest, User user, Long postId) {
 
         if (user == null) {
-            throw new RuntimeException("로그인이 필요합니다");
+            throw new CustomException(CustomError.NEED_LOGIN);
         }
 
-        user = userRepository.findById(user.getId()).orElseThrow(() -> new RuntimeException("존재하지 않는 사용자입니다"));
+        user = userRepository.findById(user.getId())
+                .orElseThrow(() -> new CustomException(CustomError.USER_NOT_EXIST));
 
         ClassPost post = postRepository.findById(postId)
-                .orElseThrow(() -> new IllegalArgumentException("해당 게사판은 존재하지 않습니다"));
+                .orElseThrow(() -> new CustomException(CustomError.POST_NOT_EXIST));
 
         ClassComment comment = commentRepository.save(ClassComment.createComment(commentRequest, user, post));
         return new ClassCommentDTO(comment);

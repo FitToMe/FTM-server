@@ -2,6 +2,8 @@ package com.FitToMe.project.Service.Comment.ClassComment;
 
 import com.FitToMe.project.Entity.Comment.ClassComment;
 import com.FitToMe.project.Entity.User;
+import com.FitToMe.project.Exception.CustomError;
+import com.FitToMe.project.Exception.CustomException;
 import com.FitToMe.project.Repository.Comment.ClassCommentRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -17,14 +19,14 @@ public class ClassCommentDeleteService {
     public Boolean deleteComment(Long commentId, User user) {
 
         if (user == null) {
-            throw new RuntimeException("로그인이 필요합니다");
+            throw new CustomException(CustomError.NEED_LOGIN);
         }
 
         ClassComment comment = commentRepository.findById(commentId)
-                .orElseThrow(() -> new RuntimeException("존재하지 않는 댓글입니다."));
+                .orElseThrow(() -> new CustomException(CustomError.COMMENT_NOT_EXIST));
 
         if (!comment.getUser().equals(user)) {
-            throw new SecurityException("해당 댓글을 삭제할 수 있는 권한이 없습니다");
+            throw new CustomException(CustomError.NO_AUTHORITY_TO_DELETE_COMMENT);
         }
 
         commentRepository.deleteById(commentId);

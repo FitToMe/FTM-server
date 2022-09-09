@@ -4,6 +4,8 @@ import com.FitToMe.project.DTO.Comment.ClassCommentDTO;
 import com.FitToMe.project.Entity.Comment.ClassComment;
 import com.FitToMe.project.Entity.Post.ClassPost;
 import com.FitToMe.project.Entity.User;
+import com.FitToMe.project.Exception.CustomError;
+import com.FitToMe.project.Exception.CustomException;
 import com.FitToMe.project.Repository.Comment.ClassCommentRepository;
 import com.FitToMe.project.Repository.Post.ClassPostRepository;
 import com.FitToMe.project.Repository.UserRepository;
@@ -24,17 +26,17 @@ public class ClassCommentModifyService {
     public ClassCommentDTO updateComment(User user, Long postId, Long commentId, ClassCommentRequest commentRequest) {
 
         if (user == null) {
-            throw new RuntimeException("로그인이 필요합니다");
+            throw new CustomException(CustomError.NEED_LOGIN);
         }
 
         ClassPost post = postRepository.findById(postId)
-                .orElseThrow(() -> new IllegalArgumentException("해당 게사판은 존재하지 않습니다"));
+                .orElseThrow(() -> new CustomException(CustomError.POST_NOT_EXIST));
 
         ClassComment comment = commentRepository.findById(commentId)
-                .orElseThrow(() -> new IllegalArgumentException("해당 댓글은 존재하지 않습니다"));
+                .orElseThrow(() -> new CustomException(CustomError.COMMENT_NOT_EXIST));
 
         if (!comment.getUser().equals(user)) {
-            throw new SecurityException("해당 댓글을 수정할 수 있는 권한이 없습니다");
+            throw new CustomException(CustomError.NO_AUTHORITY_TO_MODIFY_COMMENT);
         }
 
         return new ClassCommentDTO(comment);
