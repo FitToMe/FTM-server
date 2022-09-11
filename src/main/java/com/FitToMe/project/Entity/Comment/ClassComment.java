@@ -1,6 +1,7 @@
 package com.FitToMe.project.Entity.Comment;
 
 import com.FitToMe.project.Entity.Post.ClassPost;
+import com.FitToMe.project.Entity.TimeBase;
 import com.FitToMe.project.Entity.User;
 import com.FitToMe.project.Request.Comment.ClassCommentRequest;
 import lombok.AllArgsConstructor;
@@ -14,7 +15,7 @@ import javax.persistence.*;
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor
-public class ClassComment {
+public class ClassComment extends TimeBase {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
